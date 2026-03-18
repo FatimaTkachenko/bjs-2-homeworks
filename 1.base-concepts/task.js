@@ -1,19 +1,22 @@
-"use strict";
+function calculateTotalMortgage(percent, contribution, amount, countMonths) {
+    const params = [percent, contribution, amount, countMonths];
 
-function solveEquation(a, b, c) {
-  const arr = [];
-  const d = b ** 2 - 4 * a * c;
+    for (let param of params) {
+        const num = Number(param);
+        if (Number.isNaN(num)) {
+            return false;
+        }
+    }
 
-  if (d < 0) return arr;
+    const p = percent / 100 / 12;
+    const s = amount - contribution;
 
-  if (d === 0) {
-    const x = -b / (2 * a);
-    arr.push(x);
-    return arr;
-  }
+    if (s <= 0) {
+        return Number(0.toFixed(2));
+    }
 
-  const x1 = (-b + Math.sqrt(d)) / (2 * a);
-  const x2 = (-b - Math.sqrt(d)) / (2 * a);
-  arr.push(x1, x2);
-  return arr;
+    const payment = s * (p + (p / (Math.pow((1 + p), countMonths) - 1)));
+    const totalPayment = payment * countMonths;
+
+    return Number(totalPayment.toFixed(2));
 }
