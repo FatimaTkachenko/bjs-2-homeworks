@@ -1,3 +1,4 @@
+// ===== ЗАДАНИЕ 2 (уже есть) =====git checkout main
 function summElementsWorker(...arr) {
     if (arr.length === 0) return 0;
     let sum = 0;
